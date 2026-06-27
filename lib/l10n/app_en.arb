@@ -1,0 +1,77 @@
+{
+  "@@locale": "en",
+
+  "appName": "Meal Check",
+  "navToday": "Today",
+  "navHistory": "History",
+
+  "homeTitle": "Meal Check",
+  "homeEmptyMessage": "No meals recorded yet.",
+  "homeEmptyHint": "Search for food to log your first meal.",
+  "homeSearchButton": "Search Food",
+  "homeTodayTotal": "Today's Total",
+  "homeNoRecord": "No record",
+  "homeFabLabel": "Take Photo",
+  "calRange": "approx. {min}~{max} kcal",
+
+  "mealBreakfast": "Breakfast",
+  "mealLunch": "Lunch",
+  "mealDinner": "Dinner",
+  "mealSnack": "Snack",
+
+  "macroProtein": "Protein",
+  "macroCarbs": "Carbs",
+  "macroFat": "Fat",
+
+  "levelHigh": "High",
+  "levelMid": "Mid",
+  "levelLow": "Low",
+
+  "judgeGood": "Good",
+  "judgeCaution": "Caution",
+  "judgeAdjust": "Needs Adjustment",
+
+  "captureTitle": "Search Food",
+  "captureSearchHint": "Search food name (e.g. Kimchi stew)",
+  "captureSelectedLabel": "Selected",
+  "captureApiLabel": "Public DB",
+  "captureEmptyTitle": "Enter a food name to search",
+  "captureEmptySubtitle": "Searches local DB first, then public food database",
+  "captureNoResult": "No results for \"{query}\".",
+  "captureNoResultHint": "Try a different name",
+  "captureApiLoading": "Searching public DB...",
+  "captureKcalPer100g": "{kcal}kcal / 100g",
+  "captureDefaultServing": "default {g}g",
+  "captureAnalyzeButton": "Analyze ({count})",
+  "captureSelectAtLeastOne": "Please select at least one food.",
+
+  "analysisTitle": "Meal Analysis",
+  "analysisFoodList": "Food List",
+  "analysisTotal": "Total",
+  "analysisNutrition": "Nutrition Balance",
+  "analysisNextAdviceTitle": "Next Meal Advice",
+  "analysisMealTypeLabel": "Meal Type",
+  "analysisSaveButton": "Save Meal",
+  "analysisSaveSuccess": "Meal saved.",
+  "analysisSaveFail": "Save failed. Please try again.",
+  "analysisKcal": "{kcal}kcal",
+  "analysisTotalKcal": "{kcal} kcal",
+
+  "historyTitle": "History",
+  "historyDailyTotal": "Daily Total",
+  "historyEmpty": "No meals recorded for this date.",
+
+  "judgeReasonGood": "Well-balanced meal with appropriate calories ({totalKcal} kcal).",
+  "judgeReasonCautionHighCal": "Calorie count ({totalKcal} kcal) is slightly high. Consider reducing portion size.",
+  "judgeReasonCautionHighFat": "Fat intake is high. Try to reduce greasy foods.",
+  "judgeReasonCautionLowCal": "Calorie count ({totalKcal} kcal) is too low. Make sure to get enough nutrition.",
+  "judgeReasonAdjustHighCal": "Calorie count ({totalKcal} kcal) significantly exceeds the recommended amount for one meal.",
+  "judgeReasonAdjustImbalance": "High fat and low protein make this meal nutritionally unbalanced.",
+
+  "adviceAdjust": "For your next meal, opt for light vegetable-based dishes like tofu soup. Stay hydrated.",
+  "adviceLowProtein": "Protein is low. Add eggs, chicken breast, or tofu to your next meal.",
+  "adviceHighFat": "Go for vegetable-based side dishes next time and avoid greasy foods.",
+  "adviceHighCarbs": "Carbs were high this meal. Focus on protein and vegetables for your next meal.",
+  "adviceLowAll": "Overall intake was low. Make sure to have a balanced and sufficient next meal.",
+  "adviceGood": "Keep up the good eating pattern. Snack on fruits, nuts, or yogurt when needed."
+}

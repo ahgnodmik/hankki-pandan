@@ -1,0 +1,64 @@
+name: hankki_pandan
+description: "한끼한판 - 식단 기록·분석 앱"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # State management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Router
+  go_router: ^15.1.2
+
+  # Image
+  image_picker: ^1.1.2
+
+  # HTTP
+  http: ^1.2.2
+
+  # Utilities
+  intl: ^0.20.2
+  uuid: ^4.5.1
+  shared_preferences: ^2.3.5
+
+  # Dotted border / UI
+  flutter_dotenv: ^5.2.1
+
+  # Ads
+  google_mobile_ads: ^9.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.3
+  build_runner: ^2.4.14
+  riverpod_generator: ^2.6.4
+  custom_lint: ^0.7.5
+  riverpod_lint: ^2.6.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  adaptive_icon_background: "#FAF7F2"
+  adaptive_icon_foreground: "assets/icon/app_icon.png"
+
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - .env
+    - assets/icon/

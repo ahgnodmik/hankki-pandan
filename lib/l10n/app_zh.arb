@@ -1,0 +1,77 @@
+{
+  "@@locale": "zh",
+
+  "appName": "一餐判断",
+  "navToday": "今日",
+  "navHistory": "记录",
+
+  "homeTitle": "一餐判断",
+  "homeEmptyMessage": "尚无饮食记录",
+  "homeEmptyHint": "搜索食物，记录您的第一餐",
+  "homeSearchButton": "搜索食物",
+  "homeTodayTotal": "今日合计",
+  "homeNoRecord": "无记录",
+  "homeFabLabel": "拍照",
+  "calRange": "约 {min}~{max} 千卡",
+
+  "mealBreakfast": "早餐",
+  "mealLunch": "午餐",
+  "mealDinner": "晚餐",
+  "mealSnack": "零食",
+
+  "macroProtein": "蛋白质",
+  "macroCarbs": "碳水",
+  "macroFat": "脂肪",
+
+  "levelHigh": "高",
+  "levelMid": "中",
+  "levelLow": "低",
+
+  "judgeGood": "良好",
+  "judgeCaution": "注意",
+  "judgeAdjust": "需调整",
+
+  "captureTitle": "搜索食物",
+  "captureSearchHint": "搜索食物名称（例：泡菜汤）",
+  "captureSelectedLabel": "已选食物",
+  "captureApiLabel": "公共DB",
+  "captureEmptyTitle": "输入食物名称进行搜索",
+  "captureEmptySubtitle": "先搜索本地数据库，再搜索公共食品数据库",
+  "captureNoResult": "未找到\"{query}\"的结果",
+  "captureNoResultHint": "请尝试其他名称",
+  "captureApiLoading": "正在搜索公共数据库...",
+  "captureKcalPer100g": "{kcal}千卡 / 100g",
+  "captureDefaultServing": "默认 {g}g",
+  "captureAnalyzeButton": "分析 ({count})",
+  "captureSelectAtLeastOne": "请至少选择一种食物。",
+
+  "analysisTitle": "饮食分析",
+  "analysisFoodList": "食物列表",
+  "analysisTotal": "合计",
+  "analysisNutrition": "营养均衡",
+  "analysisNextAdviceTitle": "下餐建议",
+  "analysisMealTypeLabel": "餐次",
+  "analysisSaveButton": "保存记录",
+  "analysisSaveSuccess": "饮食已保存。",
+  "analysisSaveFail": "保存失败，请重试。",
+  "analysisKcal": "{kcal}千卡",
+  "analysisTotalKcal": "{kcal} 千卡",
+
+  "historyTitle": "饮食记录",
+  "historyDailyTotal": "日摄入量",
+  "historyEmpty": "该日期没有饮食记录。",
+
+  "judgeReasonGood": "营养均衡，热量（{totalKcal}千卡）适中。",
+  "judgeReasonCautionHighCal": "热量（{totalKcal}千卡）偏高，建议控制饮食量。",
+  "judgeReasonCautionHighFat": "脂肪摄入量较高，请减少油腻食物。",
+  "judgeReasonCautionLowCal": "热量（{totalKcal}千卡）过低，需要摄入足够的营养。",
+  "judgeReasonAdjustHighCal": "热量（{totalKcal}千卡）远超单餐推荐量。",
+  "judgeReasonAdjustImbalance": "脂肪过高且蛋白质不足，营养不均衡。",
+
+  "adviceAdjust": "下一餐建议以蔬菜、豆腐为主，清淡饮食，并补充足够水分。",
+  "adviceLowProtein": "蛋白质不足，下一餐可以添加鸡蛋、鸡胸肉或豆腐。",
+  "adviceHighFat": "下一餐以蔬菜为主，避免油腻食物。",
+  "adviceHighCarbs": "本餐碳水化合物摄入较多，下一餐请以蛋白质和蔬菜为主。",
+  "adviceLowAll": "整体摄入量偏低，下一餐请保证均衡且充足的饮食。",
+  "adviceGood": "保持良好的饮食习惯，零食可选择水果、坚果或酸奶。"
+}

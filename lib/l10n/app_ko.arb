@@ -1,0 +1,133 @@
+{
+  "@@locale": "ko",
+
+  "appName": "한끼한판",
+  "navToday": "오늘",
+  "navHistory": "기록",
+
+  "homeTitle": "한끼한판",
+  "homeEmptyMessage": "아직 기록된 식사가 없습니다.",
+  "homeEmptyHint": "음식을 검색해 첫 식단을 점검해보세요.",
+  "homeSearchButton": "음식 검색하기",
+  "homeTodayTotal": "오늘 총합",
+  "homeNoRecord": "기록 없음",
+  "homeFabLabel": "촬영하기",
+  "calRange": "약 {min}~{max} kcal",
+  "@calRange": {
+    "placeholders": {
+      "min": {"type": "int"},
+      "max": {"type": "int"}
+    }
+  },
+
+  "mealBreakfast": "아침",
+  "mealLunch": "점심",
+  "mealDinner": "저녁",
+  "mealSnack": "간식",
+
+  "macroProtein": "단백질",
+  "macroCarbs": "탄수화물",
+  "macroFat": "지방",
+
+  "levelHigh": "높음",
+  "levelMid": "보통",
+  "levelLow": "낮음",
+
+  "judgeGood": "좋음",
+  "judgeCaution": "주의",
+  "judgeAdjust": "조정 필요",
+
+  "captureTitle": "음식 검색",
+  "captureSearchHint": "음식명을 검색하세요 (예: 김치찌개)",
+  "captureSelectedLabel": "선택된 음식",
+  "captureApiLabel": "공공DB",
+  "captureEmptyTitle": "음식명을 입력하면 검색합니다",
+  "captureEmptySubtitle": "로컬 DB → 공공 DB 순으로 검색합니다",
+  "captureNoResult": "\"{query}\" 검색 결과가 없습니다.",
+  "@captureNoResult": {
+    "placeholders": {
+      "query": {"type": "String"}
+    }
+  },
+  "captureNoResultHint": "다른 이름으로 검색해보세요",
+  "captureApiLoading": "공공 DB 검색 중...",
+  "captureKcalPer100g": "{kcal}kcal / 100g",
+  "@captureKcalPer100g": {
+    "placeholders": {
+      "kcal": {"type": "int"}
+    }
+  },
+  "captureDefaultServing": "기본 {g}g",
+  "@captureDefaultServing": {
+    "placeholders": {
+      "g": {"type": "int"}
+    }
+  },
+  "captureAnalyzeButton": "분석하기 ({count}개)",
+  "@captureAnalyzeButton": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "captureSelectAtLeastOne": "음식을 하나 이상 선택해주세요.",
+
+  "analysisTitle": "식단 분석",
+  "analysisFoodList": "음식 목록",
+  "analysisTotal": "합계",
+  "analysisNutrition": "영양 균형",
+  "analysisNextAdviceTitle": "다음 식사 조언",
+  "analysisMealTypeLabel": "식사 종류",
+  "analysisSaveButton": "식단 저장하기",
+  "analysisSaveSuccess": "식단이 저장되었습니다.",
+  "analysisSaveFail": "저장 실패. 다시 시도해주세요.",
+  "analysisKcal": "{kcal}kcal",
+  "@analysisKcal": {
+    "placeholders": {
+      "kcal": {"type": "int"}
+    }
+  },
+  "analysisTotalKcal": "{kcal} kcal",
+  "@analysisTotalKcal": {
+    "placeholders": {
+      "kcal": {"type": "int"}
+    }
+  },
+
+  "historyTitle": "식단 기록",
+  "historyDailyTotal": "하루 총 칼로리",
+  "historyEmpty": "이 날짜에 기록된 식단이 없습니다.",
+
+  "judgeReasonGood": "영양 균형이 적절하고 칼로리({totalKcal}kcal)가 적당합니다.",
+  "@judgeReasonGood": {
+    "placeholders": {
+      "totalKcal": {"type": "int"}
+    }
+  },
+  "judgeReasonCautionHighCal": "{totalKcal}kcal로 칼로리가 다소 높습니다. 식사량 조절을 권장합니다.",
+  "@judgeReasonCautionHighCal": {
+    "placeholders": {
+      "totalKcal": {"type": "int"}
+    }
+  },
+  "judgeReasonCautionHighFat": "지방 섭취(높음)가 많습니다. 기름진 음식을 줄여보세요.",
+  "judgeReasonCautionLowCal": "칼로리({totalKcal}kcal)가 너무 낮습니다. 충분한 영양 섭취가 필요합니다.",
+  "@judgeReasonCautionLowCal": {
+    "placeholders": {
+      "totalKcal": {"type": "int"}
+    }
+  },
+  "judgeReasonAdjustHighCal": "칼로리가 {totalKcal}kcal로 1회 식사 권장량을 크게 초과합니다.",
+  "@judgeReasonAdjustHighCal": {
+    "placeholders": {
+      "totalKcal": {"type": "int"}
+    }
+  },
+  "judgeReasonAdjustImbalance": "지방 섭취가 높고 단백질이 부족해 영양 균형이 맞지 않습니다.",
+
+  "adviceAdjust": "다음 식사는 채소·두부 위주의 가볍고 담백한 식사를 권장합니다. 수분도 충분히 섭취하세요.",
+  "adviceLowProtein": "단백질이 부족합니다. 다음 식사에 달걀·닭가슴살·두부 등을 추가해보세요.",
+  "adviceHighFat": "채소 반찬과 나물 위주로 가볍게 드시고, 기름진 음식은 피해주세요.",
+  "adviceHighCarbs": "탄수화물 섭취가 많았습니다. 다음 식사는 단백질과 채소 위주로 구성해보세요.",
+  "adviceLowAll": "전체적으로 섭취량이 적습니다. 다음 식사에서 균형 잡힌 식단을 충분히 드세요.",
+  "adviceGood": "현재 식사 패턴을 유지하세요. 간식은 과일·견과류·요구르트 등으로 가볍게 드세요."
+}

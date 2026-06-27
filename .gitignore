@@ -1,0 +1,30 @@
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+*.iml
+
+# Android signing (보안 파일 제외)
+android/key.properties
+android/app/*.jks
+android/app/*.keystore
+keystore-info.txt
+
+# Environment
+.env
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/flutter_export_environment.sh
+
+# Dart/pub
+.dart_tool/
+pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp

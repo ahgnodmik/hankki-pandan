@@ -1,0 +1,77 @@
+{
+  "@@locale": "ja",
+
+  "appName": "一食判断",
+  "navToday": "今日",
+  "navHistory": "記録",
+
+  "homeTitle": "一食判断",
+  "homeEmptyMessage": "まだ食事の記録がありません。",
+  "homeEmptyHint": "食べ物を検索して最初の食事を記録しましょう。",
+  "homeSearchButton": "食べ物を検索",
+  "homeTodayTotal": "今日の合計",
+  "homeNoRecord": "記録なし",
+  "homeFabLabel": "撮影する",
+  "calRange": "約 {min}~{max} kcal",
+
+  "mealBreakfast": "朝食",
+  "mealLunch": "昼食",
+  "mealDinner": "夕食",
+  "mealSnack": "おやつ",
+
+  "macroProtein": "タンパク質",
+  "macroCarbs": "炭水化物",
+  "macroFat": "脂質",
+
+  "levelHigh": "高い",
+  "levelMid": "普通",
+  "levelLow": "低い",
+
+  "judgeGood": "良好",
+  "judgeCaution": "注意",
+  "judgeAdjust": "要改善",
+
+  "captureTitle": "食べ物検索",
+  "captureSearchHint": "食べ物の名前を検索（例：キムチ鍋）",
+  "captureSelectedLabel": "選択済み",
+  "captureApiLabel": "公共DB",
+  "captureEmptyTitle": "食べ物の名前を入力して検索",
+  "captureEmptySubtitle": "ローカルDB → 公共DBの順で検索します",
+  "captureNoResult": "「{query}」の検索結果がありません。",
+  "captureNoResultHint": "別の名前で検索してみてください",
+  "captureApiLoading": "公共DBを検索中...",
+  "captureKcalPer100g": "{kcal}kcal / 100g",
+  "captureDefaultServing": "デフォルト {g}g",
+  "captureAnalyzeButton": "分析する（{count}個）",
+  "captureSelectAtLeastOne": "食べ物を1つ以上選択してください。",
+
+  "analysisTitle": "食事分析",
+  "analysisFoodList": "食べ物リスト",
+  "analysisTotal": "合計",
+  "analysisNutrition": "栄養バランス",
+  "analysisNextAdviceTitle": "次の食事へのアドバイス",
+  "analysisMealTypeLabel": "食事の種類",
+  "analysisSaveButton": "食事を保存",
+  "analysisSaveSuccess": "食事を保存しました。",
+  "analysisSaveFail": "保存に失敗しました。もう一度お試しください。",
+  "analysisKcal": "{kcal}kcal",
+  "analysisTotalKcal": "{kcal} kcal",
+
+  "historyTitle": "食事記録",
+  "historyDailyTotal": "1日の合計カロリー",
+  "historyEmpty": "この日の食事記録はありません。",
+
+  "judgeReasonGood": "栄養バランスが良く、カロリー（{totalKcal}kcal）も適切です。",
+  "judgeReasonCautionHighCal": "カロリー（{totalKcal}kcal）がやや高めです。食事量を調整してください。",
+  "judgeReasonCautionHighFat": "脂質の摂取量が多いです。油っこい食べ物を減らしましょう。",
+  "judgeReasonCautionLowCal": "カロリー（{totalKcal}kcal）が低すぎます。十分な栄養を摂取してください。",
+  "judgeReasonAdjustHighCal": "カロリー（{totalKcal}kcal）が1回の食事の推奨量を大幅に超えています。",
+  "judgeReasonAdjustImbalance": "脂質が多くタンパク質が不足しており、栄養バランスが崩れています。",
+
+  "adviceAdjust": "次の食事は野菜・豆腐中心の軽い食事がおすすめです。水分も十分に摂ってください。",
+  "adviceLowProtein": "タンパク質が不足しています。次の食事に卵・鶏むね肉・豆腐などを加えましょう。",
+  "adviceHighFat": "野菜中心の副菜を選び、油っこい食べ物は避けましょう。",
+  "adviceHighCarbs": "炭水化物が多かったです。次の食事はタンパク質と野菜中心にしましょう。",
+  "adviceLowAll": "全体的に摂取量が少ないです。次の食事では十分にバランスよく食べましょう。",
+  "adviceGood": "良い食事パターンを続けてください。おやつは果物・ナッツ・ヨーグルトなどにしましょう。"
+}

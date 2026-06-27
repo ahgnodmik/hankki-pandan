@@ -28,3 +28,6 @@ pubspec.lock
 .idea/
 .vscode/
 *.swp
+
+# 기타 제외 파일
+공공포털 이용관련.png

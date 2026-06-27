@@ -6,11 +6,15 @@
 build/
 *.iml
 
-# Android signing (보안 파일 제외)
+# Android signing (절대 공개 금지)
 android/key.properties
 android/app/*.jks
 android/app/*.keystore
+**/*.jks
+**/*.keystore
 keystore-info.txt
+**/keystore*
+**/signing*
 
 # Environment
 .env

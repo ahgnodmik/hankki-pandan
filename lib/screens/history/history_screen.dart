@@ -242,7 +242,7 @@ class _MealCard extends ConsumerWidget {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => _EditRecordSheet(record: record),
+      builder: (_) => EditRecordSheet(record: record),
     );
   }
 
@@ -354,15 +354,15 @@ class _EditEntry {
   }
 }
 
-class _EditRecordSheet extends ConsumerStatefulWidget {
+class EditRecordSheet extends ConsumerStatefulWidget {
   final MealRecord record;
-  const _EditRecordSheet({required this.record});
+  const EditRecordSheet({super.key, required this.record});
 
   @override
-  ConsumerState<_EditRecordSheet> createState() => _EditRecordSheetState();
+  ConsumerState<EditRecordSheet> createState() => _EditRecordSheetState();
 }
 
-class _EditRecordSheetState extends ConsumerState<_EditRecordSheet> {
+class _EditRecordSheetState extends ConsumerState<EditRecordSheet> {
   late String _mealType;
   late List<_EditEntry> _entries;
 

@@ -8,6 +8,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/utils/nutrition_judge.dart';
 import '../../models/meal_record.dart';
 import '../../providers/providers.dart';
+import '../history/history_screen.dart' show EditRecordSheet;
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -362,18 +363,52 @@ class _MealTypeSection extends StatelessWidget {
   }
 }
 
-class _MealCard extends StatelessWidget {
+class _MealCard extends ConsumerWidget {
   final MealRecord record;
   const _MealCard({required this.record});
 
+  void _showEditSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => EditRecordSheet(record: record),
+    );
+  }
+
+  void _showDeleteConfirm(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('기록 삭제'),
+        content: const Text('이 식단 기록을 삭제하시겠어요?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('취소'),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              await ref.read(deleteMealProvider.notifier).delete(record.id);
+            },
+            child: const Text('삭제',
+                style: TextStyle(color: AppTheme.critical)),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final judgeText = NutritionJudge.localizeJudge(record.judge, l10n);
 
     return Container(
       margin: const EdgeInsets.only(bottom: AppTheme.spXs),
-      padding: const EdgeInsets.all(AppTheme.spXl),
+      padding: const EdgeInsets.fromLTRB(
+          AppTheme.spXl, AppTheme.spXs, AppTheme.spXs, AppTheme.spXs),
       decoration: BoxDecoration(
         color: AppTheme.canvas,
         borderRadius: BorderRadius.circular(AppTheme.rXl),
@@ -382,25 +417,40 @@ class _MealCard extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(record.foods.map((f) => f.name).join(', '),
-                    style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: AppTheme.inkDeep,
-                        letterSpacing: -0.14)),
-                const SizedBox(height: 3),
-                Text(
-                    l10n.calRange(
-                        record.totalCalMin, record.totalCalMax),
-                    style: const TextStyle(
-                        fontSize: 13, color: AppTheme.steel)),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: AppTheme.spMd),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(record.foods.map((f) => f.name).join(', '),
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          color: AppTheme.inkDeep,
+                          letterSpacing: -0.14)),
+                  const SizedBox(height: 3),
+                  Text(
+                      l10n.calRange(record.totalCalMin, record.totalCalMax),
+                      style: const TextStyle(
+                          fontSize: 13, color: AppTheme.steel)),
+                ],
+              ),
             ),
           ),
           _JudgeBadge(judge: record.judge, label: judgeText),
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert,
+                color: AppTheme.stone, size: 18),
+            padding: EdgeInsets.zero,
+            onSelected: (value) {
+              if (value == 'edit') _showEditSheet(context);
+              if (value == 'delete') _showDeleteConfirm(context, ref);
+            },
+            itemBuilder: (_) => const [
+              PopupMenuItem(value: 'edit', child: Text('수정')),
+              PopupMenuItem(value: 'delete', child: Text('삭제')),
+            ],
+          ),
         ],
       ),
     );

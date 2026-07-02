@@ -59,7 +59,6 @@ class CaptureScreen extends ConsumerStatefulWidget {
 class _CaptureScreenState extends ConsumerState<CaptureScreen> {
   File? _photo;
   final _picker = ImagePicker();
-  bool _cameraLaunched = false;
 
   final _searchCtrl = TextEditingController();
   final _searchFocus = FocusNode();
@@ -71,12 +70,6 @@ class _CaptureScreenState extends ConsumerState<CaptureScreen> {
   final _selected = <SelectedFood>[];
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _launchCamera());
-  }
-
-  @override
   void dispose() {
     _searchCtrl.dispose();
     _searchFocus.dispose();
@@ -84,13 +77,7 @@ class _CaptureScreenState extends ConsumerState<CaptureScreen> {
     super.dispose();
   }
 
-  // ── Camera ─────────────────────────────────────────────────────────────────
-  Future<void> _launchCamera() async {
-    if (_cameraLaunched) return;
-    _cameraLaunched = true;
-    await _pickImage(ImageSource.camera);
-  }
-
+  // ── Camera / Gallery ───────────────────────────────────────────────────────
   Future<void> _pickImage(ImageSource source) async {
     final xfile = await _picker.pickImage(
         source: source, imageQuality: 85, maxWidth: 1280);
@@ -156,8 +143,11 @@ class _CaptureScreenState extends ConsumerState<CaptureScreen> {
   }
 
   // ── Selection ──────────────────────────────────────────────────────────────
-  void _add(FoodResult food) => setState(() => _selected.add(
-      SelectedFood(source: food, servingG: food.defaultServingG.toDouble())));
+  void _add(FoodResult food) {
+    HapticFeedback.lightImpact();
+    setState(() => _selected.add(
+        SelectedFood(source: food, servingG: food.defaultServingG.toDouble())));
+  }
   void _remove(int i) => setState(() => _selected.removeAt(i));
   bool _isAdded(String name) => _selected.any((s) => s.source.name == name);
 
@@ -197,14 +187,19 @@ class _CaptureScreenState extends ConsumerState<CaptureScreen> {
           // 1. Photo zone
           _PhotoZone(
             photo: _photo,
-            onCamera: () { _cameraLaunched = false; _launchCamera(); },
+            onCamera: () => _pickImage(ImageSource.camera),
             onGallery: () => _pickImage(ImageSource.gallery),
-            onRetake: () { _cameraLaunched = false; _launchCamera(); },
+            onRetake: () => _pickImage(ImageSource.camera),
           ),
 
           // 2. Selected chips
-          if (_selected.isNotEmpty)
-            _ChipsBar(foods: _selected, onRemove: _remove),
+          AnimatedSize(
+            duration: const Duration(milliseconds: 220),
+            curve: Curves.easeInOut,
+            child: _selected.isEmpty
+                ? const SizedBox.shrink()
+                : _ChipsBar(foods: _selected, onRemove: _remove),
+          ),
 
           // 3. Search pill
           Container(
@@ -717,17 +712,19 @@ class _ChipsBar extends StatelessWidget {
             runSpacing: 4,
             children: foods.asMap().entries.map((e) {
               final f = e.value;
+              final kcal = (f.source.kcalPer100g * f.servingG / 100).round();
               return Chip(
                 label: Text(
-                    '${f.source.name} (${f.source.defaultServingG}g)',
+                    '${f.source.name}  ${kcal}kcal',
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.w700,
                         color: AppTheme.inkDeep)),
                 deleteIcon: const Icon(Icons.close, size: 13),
                 onDeleted: () => onRemove(e.key),
-                backgroundColor: AppTheme.surfaceSoft,
+                backgroundColor: AppTheme.success.withValues(alpha: 0.1),
                 deleteIconColor: AppTheme.steel,
-                side: BorderSide.none,
+                side: BorderSide(
+                    color: AppTheme.success.withValues(alpha: 0.3), width: 1),
                 shape: const StadiumBorder(),
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppTheme.spXs, vertical: 0),
@@ -874,13 +871,20 @@ class _ResultTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final f = entry.food;
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
       margin: const EdgeInsets.fromLTRB(
           AppTheme.spBase, 0, AppTheme.spBase, AppTheme.spXs),
       decoration: BoxDecoration(
-        color: AppTheme.canvas,
+        color: added
+            ? AppTheme.success.withValues(alpha: 0.07)
+            : AppTheme.canvas,
         borderRadius: BorderRadius.circular(AppTheme.rXl),
-        border: Border.all(color: AppTheme.hairlineSoft),
+        border: Border.all(
+          color: added
+              ? AppTheme.success.withValues(alpha: 0.35)
+              : AppTheme.hairlineSoft,
+        ),
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.fromLTRB(
@@ -917,13 +921,21 @@ class _ResultTile extends StatelessWidget {
             style: const TextStyle(fontSize: 12, color: AppTheme.steel),
           ),
         ),
-        trailing: added
-            ? const Icon(Icons.check_circle, color: AppTheme.success, size: 26)
-            : IconButton(
-                icon: const Icon(Icons.add_circle_outline,
-                    color: AppTheme.primary, size: 26),
-                onPressed: onAdd,
-              ),
+        trailing: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 200),
+          transitionBuilder: (child, anim) =>
+              ScaleTransition(scale: anim, child: child),
+          child: added
+              ? const Icon(Icons.check_circle,
+                  key: ValueKey('check'),
+                  color: AppTheme.success, size: 26)
+              : IconButton(
+                  key: const ValueKey('add'),
+                  icon: const Icon(Icons.add_circle_outline,
+                      color: AppTheme.primary, size: 26),
+                  onPressed: onAdd,
+                ),
+        ),
       ),
     );
   }

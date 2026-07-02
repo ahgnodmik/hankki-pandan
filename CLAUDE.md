@@ -1,59 +1,47 @@
-# Project Context
-한끼판단 - GPT 기반 식단 판단·기록 앱
-음식 사진 촬영 또는 텍스트 입력 → GPT-4o 분석 → 칼로리/탄단지/식단 균형 판단 → Firestore 기록
+# 한끼판단 프로젝트 컨텍스트
 
-# Goals
-- 사진 한 장으로 식단 분석
-- GPT가 음식 종류·칼로리·영양 균형 추정
-- 식단 판단 결과 저장 및 기록 조회
+## 앱 개요
+음식 이름 텍스트 입력 → 영양 분석 → 칼로리/탄단지/식단 균형 판단 → 로컬 저장·기록 조회
 
-# Tech Stack
-- Framework: Flutter (Dart)
-- Backend: Firebase (Firestore)
-- AI: OpenAI GPT-4o (Vision + Text)
-- State Management: Riverpod (StateNotifierProvider, StreamProvider)
-- Router: go_router
+## Tech Stack
+- Framework: Flutter (Dart), null-safety
+- State Management: Riverpod 3.x (AsyncNotifier, NotifierProvider)
+- Router: go_router 17.x
+- Storage: SharedPreferences (로컬)
+- AI/분석: 없음 (규칙 기반 NutritionJudge)
+- 광고: google_mobile_ads
 
-# Firebase Setup (잔여 작업)
-1. `flutterfire configure --project=<PROJECT_ID> --platforms=android,ios`
-2. Firestore 규칙 배포 (MVP: `allow read, write: if true`)
+## 음식 데이터 소스
+1. 로컬 DB: `lib/core/data/food_db.dart` — 한국 음식 60종 하드코딩
+2. 공공 API: 식품안전나라 I2790 (`.env`의 `FOOD_API_KEY`로 활성화)
+- `.env`가 없거나 키가 비어 있으면 로컬 DB만 동작
 
-# OpenAI 설정
-- `.env` 파일에 `OPENAI_API_KEY=sk-...` 입력 필요
-- flutter_dotenv로 로드
+## 핵심 파일
+- `lib/core/data/food_db.dart` — 로컬 음식 DB 60종
+- `lib/core/utils/nutrition_judge.dart` — 규칙 기반 영양 판단 (good/caution/adjust)
+- `lib/services/food_search_service.dart` — 로컬 DB + 공공 API 통합 검색
+- `lib/models/food_models.dart` — FoodResult, SelectedFood
+- `lib/models/meal_record.dart` — DateTime + JSON 직렬화 (Firestore 없음)
+- `lib/repositories/meal_repository.dart` — SharedPreferences CRUD
+- `lib/providers/providers.dart` — sharedPrefsProvider 포함 전체 Riverpod 프로바이더
 
-# Folder Structure
-- lib/core/theme/       : AppTheme
-- lib/core/constants/   : AppConstants (mealTypes, judgeLabel 등)
-- lib/models/           : MealRecord, FoodItem, AnalysisResult
-- lib/repositories/     : MealRepository (Firestore CRUD)
-- lib/providers/        : providers.dart (Riverpod 전체)
-- lib/router/           : app_router.dart (go_router 4개 라우트)
-- lib/screens/          : home, capture, analysis, history
-- lib/services/         : OpenAIService (GPT-4o Vision/Text)
+## Routes
+- `/` : HomeScreen — 오늘 식단 요약 + FAB
+- `/history` : HistoryScreen — 날짜별 기록
+- `/capture` : CaptureScreen — 텍스트 입력 (사진 분석 없음)
+- `/analysis` : AnalysisScreen — 영양 결과 + 섭취량(g) 직접 수정 → 실시간 갱신 + 저장
 
-# Routes
-- `/`           : HomeScreen (오늘 식단 요약 + FAB)
-- `/history`    : HistoryScreen (날짜별 기록)
-- `/capture`    : CaptureScreen (사진/텍스트 입력)
-- `/analysis`   : AnalysisScreen (GPT 결과 + 저장)
-
-# Key Providers
-- `todayMealsProvider`        : 오늘 식단 스트림
-- `analysisProvider`          : GPT 분석 상태 (AnalysisNotifier)
-- `saveMealProvider`          : 식단 저장 (SaveMealNotifier)
-- `selectedDateProvider`      : 기록 화면 날짜 선택
-- `selectedDateMealsProvider` : 선택 날짜 식단 스트림
-
-# Judge Values
+## Judge Values
 - `good` (좋음) / `caution` (주의) / `adjust` (조정 필요)
 
-# Coding Rules
+## Coding Rules
 - Dart only, null-safety 준수
 - 위젯은 작고 단일 책임 유지
 - 불필요한 추상화 금지
 
-# What NOT to do
-- Firebase Storage 이미지 업로드 (MVP 범위 외)
+## What NOT to do
+- Firebase / Firestore / OpenAI 코드 추가 금지 (완전 제거됨)
+- 이미지 촬영·업로드 기능 (MVP 범위 외)
 - 운동 기록, 커뮤니티, 복잡한 다이어트 플랜
 - 불필요한 패키지 추가
+

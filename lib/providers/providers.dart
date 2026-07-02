@@ -25,31 +25,55 @@ final todayMealsProvider = StreamProvider<List<MealRecord>>((ref) {
   return repo.watchByDate(DateTime.now());
 });
 
+// ── Delete meal ───────────────────────────────────────────────────────────────
+
+class DeleteMealNotifier extends AsyncNotifier<void> {
+  @override
+  Future<void> build() async {}
+
+  Future<bool> delete(String id) async {
+    state = const AsyncLoading();
+    final result = await AsyncValue.guard(
+      () => ref.read(mealRepositoryProvider).delete(id),
+    );
+    state = result;
+    return result is AsyncData;
+  }
+}
+
+final deleteMealProvider =
+    AsyncNotifierProvider<DeleteMealNotifier, void>(DeleteMealNotifier.new);
+
 // ── Save meal ─────────────────────────────────────────────────────────────────
 
-class SaveMealNotifier extends StateNotifier<AsyncValue<void>> {
-  final MealRepository _repo;
-
-  SaveMealNotifier(this._repo) : super(const AsyncValue.data(null));
+class SaveMealNotifier extends AsyncNotifier<void> {
+  @override
+  Future<void> build() async {}
 
   Future<bool> save(MealRecord record) async {
-    state = const AsyncValue.loading();
-    final result = await AsyncValue.guard(() => _repo.save(record));
+    state = const AsyncLoading();
+    final result = await AsyncValue.guard(
+      () => ref.read(mealRepositoryProvider).save(record),
+    );
     state = result;
     return result is AsyncData;
   }
 }
 
 final saveMealProvider =
-    StateNotifierProvider<SaveMealNotifier, AsyncValue<void>>(
-  (ref) => SaveMealNotifier(ref.watch(mealRepositoryProvider)),
-);
+    AsyncNotifierProvider<SaveMealNotifier, void>(SaveMealNotifier.new);
 
 // ── Selected date (for history) ───────────────────────────────────────────────
 
-final selectedDateProvider = StateProvider<DateTime>(
-  (_) => DateTime.now(),
-);
+class SelectedDateNotifier extends Notifier<DateTime> {
+  @override
+  DateTime build() => DateTime.now();
+
+  void select(DateTime date) => state = date;
+}
+
+final selectedDateProvider =
+    NotifierProvider<SelectedDateNotifier, DateTime>(SelectedDateNotifier.new);
 
 final selectedDateMealsProvider = StreamProvider<List<MealRecord>>((ref) {
   final date = ref.watch(selectedDateProvider);

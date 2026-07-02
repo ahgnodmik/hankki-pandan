@@ -15,6 +15,9 @@ void main() async {
   await dotenv.load(fileName: '.env');
   await initializeDateFormatting('ko');
   await MobileAds.instance.initialize();
+  MobileAds.instance.updateRequestConfiguration(
+    RequestConfiguration(testDeviceIds: ['BEDBACEF4C536213B5C197B2652AEDA6']),
+  );
   final prefs = await SharedPreferences.getInstance();
   runApp(ProviderScope(
     overrides: [sharedPrefsProvider.overrideWithValue(prefs)],
